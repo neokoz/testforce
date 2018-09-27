@@ -16,8 +16,8 @@ public class BasePage {
     private String baseUrl = "https://www.ns.nl/producten/en/s/enkele-reis";
 
     //Main selectors
-    private String iframeCookieSelector = ".r42CookieBar";
-    private String iframeCookieButtonSelector = ".button.accept";
+    private By iframeCookieSelector = By.cssSelector(".r42CookieBar");
+    private By iframeCookieButtonSelector = By.cssSelector(".button.accept");
 
     public BasePage() throws MalformedURLException {
         this.browser = BrowserFactory.getWebDriver();
@@ -27,7 +27,7 @@ public class BasePage {
     public BasePage(OurWebDriver ourWebDriver) {
         this.browser = ourWebDriver;
     }
-    
+
     //Getter and setters
     public OurWebDriver getBrowser() {
         return browser;
@@ -52,9 +52,9 @@ public class BasePage {
 
     public void acceptCookies() {
         try {
-            WebElement iframe = browser.waitForElement(By.cssSelector(iframeCookieSelector));
+            WebElement iframe = browser.waitForElement(iframeCookieSelector);
             browser.switchTo().frame(iframe);
-            browser.findElement(By.cssSelector(iframeCookieButtonSelector)).click();
+            browser.findElement(iframeCookieButtonSelector).click();
             browser.switchTo().defaultContent();
         } catch (NoSuchElementException e) {
             e.printStackTrace();
