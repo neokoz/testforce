@@ -9,13 +9,13 @@ import java.net.MalformedURLException;
 public class TravelPage extends BasePage {
 
     //CSS Selectors
-    private String travelTodaySelector = "[for=\"Today_TravelDate\"]";
-    private String travelFromSelector = "#displayStationFrom";
-    private String travelToSelector = "#displayStationTo";
-    private String totalPriceSelector = "[data-test-id='TOTAL_PRICE']";
-    private String secondClassSelector = "[data-test-id='SECOND_CLASS']";
-    private String initialsSelector = "#PO_Initials_1";
-    private String lastNameSelector = "#PO_LastName_1";
+    private By travelTodaySelector = By.cssSelector("[for=\"Today_TravelDate\"]");
+    private By travelFromSelector = By.cssSelector("#displayStationFrom");
+    private By travelToSelector = By.cssSelector("#displayStationTo");
+    private By totalPriceSelector = By.cssSelector("[data-test-id='TOTAL_PRICE']");
+    private By secondClassSelector = By.cssSelector("[data-test-id='SECOND_CLASS']");
+    private By initialsSelector = By.cssSelector("#PO_Initials_1");
+    private By lastNameSelector = By.cssSelector("#PO_LastName_1");
     private String birthdayDaySelectorPrefix = "[name='PO_BirthDate_1'] .inputfield__selectbox--birthdateDay [value='";
     private String birthdayDaySelectorSufix = "']";
     private String birthdayMonthSelectorPrefix = "[name='PO_BirthDate_1'] .inputfield__selectbox--birthdateMonth [value='";
@@ -36,7 +36,7 @@ public class TravelPage extends BasePage {
     }
 
     public void travelToday() {
-        browser.findElement(By.cssSelector(travelTodaySelector)).click();
+        browser.findElement(travelTodaySelector).click();
     }
 
     public void travelFrom() {
@@ -44,7 +44,7 @@ public class TravelPage extends BasePage {
     }
 
     public void travelFrom(String fromLocation) {
-        browser.findElement(By.cssSelector(travelFromSelector)).sendKeys(fromLocation);
+        browser.findElement(travelFromSelector).sendKeys(fromLocation);
     }
 
     public void travelTo() {
@@ -52,11 +52,11 @@ public class TravelPage extends BasePage {
     }
 
     public void travelTo(String toLocation) {
-        browser.findElement(By.cssSelector(travelToSelector)).sendKeys(toLocation);
+        browser.findElement(travelToSelector).sendKeys(toLocation);
     }
 
     public void travelSecondClass() {
-        browser.findElement(By.cssSelector(secondClassSelector)).click();
+        browser.findElement(secondClassSelector).click();
     }
 
     public void fillTravelDetails() {
@@ -64,15 +64,15 @@ public class TravelPage extends BasePage {
     }
 
     public void fillTravelDetails(String initials, String lastname, String birthdayDay, String birthdayMonth, String brithdayYear) {
-        browser.findElement(By.cssSelector(initialsSelector)).sendKeys(initials);
-        browser.findElement(By.cssSelector(lastNameSelector)).sendKeys(lastname);
+        browser.findElement(initialsSelector).sendKeys(initials);
+        browser.findElement(lastNameSelector).sendKeys(lastname);
         browser.findElement(By.cssSelector(birthdayDaySelectorPrefix + birthdayDay + birthdayDaySelectorSufix)).click();
         browser.findElement(By.cssSelector(birthdayMonthSelectorPrefix + birthdayMonth + birthdayMonthSelectorSufix)).click();
         browser.findElement(By.cssSelector(birthdayYearSelectorPrefix + brithdayYear + birthdayYearSelectorSufix)).click();
     }
 
     public void checkTicketPrice(String expectedPrice) {
-        String actualPrice = browser.findElement(By.cssSelector(totalPriceSelector)).getText();
+        String actualPrice = browser.findElement(totalPriceSelector).getText();
         Assert.assertEquals("Expected price <" + expectedPrice + "> did not meet actual price <" + actualPrice + ">", expectedPrice, actualPrice);
     }
 
