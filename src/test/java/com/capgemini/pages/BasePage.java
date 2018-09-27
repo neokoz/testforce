@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 
 public class BasePage {
 
-    public OurWebDriver browser;
+    protected OurWebDriver browser;
 
     public BasePage() throws MalformedURLException {
         this.browser = BrowserFactory.getWebDriver();
