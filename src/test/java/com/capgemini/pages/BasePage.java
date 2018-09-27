@@ -12,6 +12,13 @@ public class BasePage {
 
     protected OurWebDriver browser;
 
+    //Main page properties
+    private String baseUrl = "https://www.ns.nl/producten/en/s/enkele-reis";
+
+    //Main selectors
+    private String iframeCookieSelector = ".r42CookieBar";
+    private String iframeCookieButtonSelector = ".button.accept";
+
     public BasePage() throws MalformedURLException {
         this.browser = BrowserFactory.getWebDriver();
     }
@@ -20,14 +27,7 @@ public class BasePage {
     public BasePage(OurWebDriver ourWebDriver) {
         this.browser = ourWebDriver;
     }
-
-    //Main page properties
-    private String baseUrl = "https://www.ns.nl/producten/en/s/enkele-reis";
-
-    //Main selectors
-    private String iframeCookieSelector = ".r42CookieBar";
-    private String iframeCookieButtonSelector = ".button.accept";
-
+    
     //Getter and setters
     public OurWebDriver getBrowser() {
         return browser;
